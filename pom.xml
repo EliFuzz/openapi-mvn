@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>openapi</artifactId>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <artifactId>openapi-generator-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <configuration>
+                <configOptions>
+                  <dateLibrary>java8</dateLibrary>
+                  <delegatePattern>true</delegatePattern>
+                  <interfaceOnly>true</interfaceOnly>
+                  <java8>true</java8>
+                  <notNullJacksonAnnotation>true</notNullJacksonAnnotation>
+                  <serviceImplementation>false</serviceImplementation>
+                  <serviceInterface>true</serviceInterface>
+                  <sourceFolder>src/main/java</sourceFolder>
+                  <useJakartaEe>true</useJakartaEe>
+                  <useTags>true</useTags>
+                </configOptions>
+                <generateAliasAsModel>false</generateAliasAsModel>
+                <generateApiDocumentation>true</generateApiDocumentation>
+                <generateApiTests>false</generateApiTests>
+                <generateApis>true</generateApis>
+                <generateModelDocumentation>true</generateModelDocumentation>
+                <generateModelTests>false</generateModelTests>
+                <generateModels>true</generateModels>
+                <generateSupportingFiles>true</generateSupportingFiles>
+                <inputSpec>${project.parent.basedir}/specs/api.yml</inputSpec>
+                <output>${project.build.directory}/generated-sources/openapi</output>
+              </configuration>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+            </execution>
+          </executions>
+          <groupId>org.openapitools</groupId>
+          <version>7.0.1</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <configuration>
+                <sources>
+                  <source>${project.build.directory}/generated-sources/openapi</source>
+                </sources>
+              </configuration>
+              <goals>
+                <goal>add-source</goal>
+              </goals>
+              <id>add-source</id>
+              <phase>generate-sources</phase>
+            </execution>
+          </executions>
+          <groupId>org.codehaus.mojo</groupId>
+          <version>3.5.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <artifactId>spring-web</artifactId>
+      <groupId>org.springframework</groupId>
+      <version>6.1.3</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <version>3.2.2</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>jackson-annotations</artifactId>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <version>2.16.1</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <groupId>jakarta.annotation</groupId>
+      <version>2.1.1</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>jakarta.validation-api</artifactId>
+      <groupId>jakarta.validation</groupId>
+      <version>3.0.2</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <groupId>jakarta.servlet</groupId>
+      <scope>provided</scope>
+      <version>6.0.0</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>swagger-annotations</artifactId>
+      <groupId>io.swagger.core.v3</groupId>
+      <version>2.2.20</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>jackson-databind-nullable</artifactId>
+      <groupId>org.openapitools</groupId>
+      <version>0.2.6</version>
+    </dependency>
+  </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>local-repo</id>
+      <name>Local Repository</name>
+      <url>file://${user.home}/.m2/repository</url>
+    </repository>
+  </distributionManagement>
+
+  <groupId>com.genten.openapi</groupId>
+  <modelVersion>4.0.0</modelVersion>
+
+  <modules>
+    <module>client</module>
+    <module>server</module>
+  </modules>
+
+  <packaging>pom</packaging>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+
+    <swagger.root>com.genten.contract</swagger.root>
+  </properties>
+
+  <version>1.0-SNAPSHOT</version>
+
+</project>
