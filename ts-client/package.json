@@ -1,0 +1,13 @@
+{
+  "name": "ts-client",
+  "description": "example of using openapi-typescript to generate typescript client",
+  "version": "0.1.0",
+  "scripts": {
+    "generate": "openapi-typescript ../specs/api.yml -o ./target/api/api.d.ts"
+  },
+  "dependencies": {
+    "openapi-fetch": "0.13.4",
+    "openapi-typescript": "7.6.1",
+    "typescript": "5.7.3"
+  }
+}
