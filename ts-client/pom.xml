@@ -2,7 +2,7 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <artifactId>client</artifactId>
+  <artifactId>ts-client</artifactId>
   <build>
     <plugins>
       <plugin>
@@ -15,8 +15,7 @@
                 <basePackage>${swagger.root}.client</basePackage>
                 <modelPackage>${swagger.root}.client.model</modelPackage>
               </configOptions>
-              <generatorName>java</generatorName>
-              <library>webclient</library>
+              <generatorName>typescript-fetch</generatorName>
             </configuration>
             <goals>
               <goal>generate</goal>
